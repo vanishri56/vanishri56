@@ -8,7 +8,7 @@ import ( "errors" "fmt"
 // DRMChaincode  Chaincode implementationtype DRMChaincode struct {}
 func main() { err := shim.Start(new(DRMChaincode)) if err != nil {  fmt.Printf("Error starting Simple chaincode: %s", err) }}
 // Init resets all the thingsfunc (t *DRMChaincode) Init(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) { if len(args) != 1 {  return nil, errors.New("Incorrect number of arguments. Expecting 1") }
- err := stub.PutState("DRM Chain Code", []byte(args[0])) if err != nil {  return nil, err }
+ err := stub.PutState("DRMChaincode", []byte(args[0])) if err != nil {  return nil, err }
  return nil, nil}
 // Invoke chaincode functionfunc (t *DRMChaincode) Invoke(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) { fmt.Println("invoke is running " + function)
  // Handle different functions if function == "init" {  return t.Init(stub, "init", args) } else if function == "write" {  return t.write(stub, args) } fmt.Println("invoke did not find func: " + function)
